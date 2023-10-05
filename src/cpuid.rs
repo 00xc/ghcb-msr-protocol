@@ -30,7 +30,6 @@ impl From<u8> for CpuidReg {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct CpuidReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl CpuidReq {
@@ -39,7 +38,6 @@ impl CpuidReq {
 		let reg = reg as u64;
 		Self {
 			data: (func << 20) | (reg << 18),
-			info: GhcbMsrInfo::CPUID_REQ,
 		}
 	}
 }
@@ -50,7 +48,7 @@ impl GhcbMsrRequest for CpuidReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::CPUID_REQ
 	}
 }
 

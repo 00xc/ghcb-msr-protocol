@@ -16,7 +16,6 @@ pub enum TerminationReason {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct TerminationReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl TerminationReq {
@@ -28,7 +27,6 @@ impl TerminationReq {
 		let reason = reason as u64;
 		Self {
 			data: (reason << 4) | code_set,
-			info: GhcbMsrInfo::TERM_REQ,
 		}
 	}
 }
@@ -39,7 +37,7 @@ impl GhcbMsrRequest for TerminationReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::TERM_REQ
 	}
 }
 

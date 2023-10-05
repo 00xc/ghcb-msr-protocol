@@ -7,15 +7,11 @@ use crate::{
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ApResetHoldReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl ApResetHoldReq {
 	pub const fn new() -> Self {
-		Self {
-			data: 0,
-			info: GhcbMsrInfo::AP_RESET_HOLD_REQ,
-		}
+		Self { data: 0 }
 	}
 }
 
@@ -25,7 +21,7 @@ impl GhcbMsrRequest for ApResetHoldReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::AP_RESET_HOLD_REQ
 	}
 }
 

@@ -7,14 +7,12 @@ use crate::{
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct RunVmplReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl RunVmplReq {
 	pub const fn new(vmpl: u8) -> Self {
 		Self {
 			data: (vmpl as u64) << 20,
-			info: GhcbMsrInfo::RUN_VMPL_REQ,
 		}
 	}
 }
@@ -25,7 +23,7 @@ impl GhcbMsrRequest for RunVmplReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::RUN_VMPL_REQ
 	}
 }
 

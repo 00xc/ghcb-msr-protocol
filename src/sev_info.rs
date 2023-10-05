@@ -7,15 +7,11 @@ use crate::{
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct SevInfoReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl SevInfoReq {
 	pub const fn new() -> Self {
-		Self {
-			data: 0,
-			info: GhcbMsrInfo::SEV_INFO_REQ,
-		}
+		Self { data: 0 }
 	}
 }
 
@@ -25,7 +21,7 @@ impl GhcbMsrRequest for SevInfoReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::SEV_INFO_REQ
 	}
 }
 

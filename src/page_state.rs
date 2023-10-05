@@ -16,7 +16,6 @@ pub enum PageOp {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct PageStateReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl PageStateReq {
@@ -24,7 +23,6 @@ impl PageStateReq {
 		let op = op as u64;
 		Self {
 			data: (op << 40) | gfn,
-			info: GhcbMsrInfo::STATE_CHANGE_REQ,
 		}
 	}
 }
@@ -35,7 +33,7 @@ impl GhcbMsrRequest for PageStateReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::STATE_CHANGE_REQ
 	}
 }
 

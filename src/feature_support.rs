@@ -7,15 +7,11 @@ use crate::{
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct FeatureSupportReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl FeatureSupportReq {
 	pub const fn new() -> Self {
-		Self {
-			data: 0,
-			info: GhcbMsrInfo::FEAT_SUPPORT_REQ,
-		}
+		Self { data: 0 }
 	}
 }
 
@@ -25,7 +21,7 @@ impl GhcbMsrRequest for FeatureSupportReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::FEAT_SUPPORT_REQ
 	}
 }
 

@@ -8,15 +8,11 @@ use crate::{
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct RegisterGhcbReq {
 	data: u64,
-	info: GhcbMsrInfo,
 }
 
 impl RegisterGhcbReq {
 	pub const fn new(gfn: u64) -> Self {
-		Self {
-			data: gfn,
-			info: GhcbMsrInfo::REG_GHCB_GPA_REQ,
-		}
+		Self { data: gfn }
 	}
 }
 
@@ -26,7 +22,7 @@ impl GhcbMsrRequest for RegisterGhcbReq {
 		self.data
 	}
 	fn info(&self) -> GhcbMsrInfo {
-		self.info
+		GhcbMsrInfo::REG_GHCB_GPA_REQ
 	}
 	fn response(
 		&self,
